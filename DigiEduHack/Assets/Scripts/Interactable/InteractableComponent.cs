@@ -10,37 +10,38 @@ public class InteractableComponent : MonoBehaviour
     [SerializeField] bool destroyAfterInteraction = true;
     [SerializeField] UnityEvent events;
 
+    bool canSpawnFloatingTextInteract = true;
     GameObject floatingInteractUI = null;
 
     bool canInteract = false;
 
     GameObject raycastChild;
 
-    [SerializeField] GameObject currentPlayer = null;
+    [SerializeField] Player currentPlayer = null;
 
     public event Action<Transform> onInteract;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         SphereCollider sphereColl = gameObject.AddComponent<SphereCollider>();
         sphereColl.isTrigger = true;
         sphereColl.radius = interactionRange;
 
-        currentPlayer = GameObject.FindGameObjectWithTag("Player");
+        currentPlayer = FindObjectOfType<Player>();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(currentPlayer.tag))
+        currentPlayer = other.gameObject.GetComponent<Player>();
+        if (currentPlayer != null)
         {
             Vector3 dir = (currentPlayer.transform.position - transform.position).normalized;
             float dotProduct = Vector3.Dot(dir, currentPlayer.transform.forward);
             if (dotProduct < faceViewThreshold)
             {
-                if (floatingInteractUI == null)
+                if (floatingInteractUI == null && canSpawnFloatingTextInteract)
                 {
-                    //floatingPickupUI = Resources.Load<GameObject>(floatingTextUIPath);
                     floatingInteractUI = Instantiate(floatingTextUI, transform.position, transform.rotation);
                 }
                 canInteract = true;
@@ -57,12 +58,12 @@ public class InteractableComponent : MonoBehaviour
                 canInteract = false;
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(currentPlayer.tag))
+        currentPlayer = other.gameObject.GetComponent<Player>();
+        if (currentPlayer != null)
         {
             if (floatingInteractUI != null)
             {
@@ -95,7 +96,7 @@ public class InteractableComponent : MonoBehaviour
         }
     }
 
-    void DestroyInteractText()
+    public void DestroyInteractText()
     {
         if (floatingInteractUI != null)
         {
@@ -103,7 +104,7 @@ public class InteractableComponent : MonoBehaviour
 
             Destroy(floatingInteractUI);
             floatingInteractUI = null;
-            Destroy(transform.parent.gameObject);
+            //Destroy(transform.parent.gameObject);
         }
     }
 
@@ -115,6 +116,11 @@ public class InteractableComponent : MonoBehaviour
             Camera cam = Camera.main;
             cam.transform.position = currentPlayer.transform.position;
         }
+    }
+
+    public void SetSpawnFloatingText(bool canSpawnFloatingTextInteract)
+	{
+        this.canSpawnFloatingTextInteract = canSpawnFloatingTextInteract;
     }
 
     private void OnDrawGizmosSelected()

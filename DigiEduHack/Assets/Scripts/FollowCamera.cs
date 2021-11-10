@@ -102,13 +102,11 @@ public class FollowCamera : MonoBehaviour
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
             SetOrbitAxis(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"));
         }
         else
         {
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
             SetOrbitAxis();
         }
 
