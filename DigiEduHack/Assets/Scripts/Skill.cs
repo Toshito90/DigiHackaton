@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
+	UIManager uiManager;
+
 	int playerSkill = 0;
 
-    public void AddPlayerSkill(int value)
+	private void Awake()
+	{
+		uiManager = FindObjectOfType<UIManager>();
+	}
+
+	public void AddPlayerSkill(int value)
 	{
 		playerSkill += value;
+
+		uiManager.GetSkillValueText().text = playerSkill.ToString();
 	}
 
 	public int GetPlayerSkill()
