@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e916e21f575344e9bb1681687a3290, type: 3}
+  m_Name: Book2
+  m_EditorClassIdentifier: 
+  actorName: Livro
+  dialogueText: "A maioria dos v\xEDrus apresenta tamanhos diminutos, que est\xE3o
+    al\xE9m dos limites de resolu\xE7\xE3o dos microsc\xF3pios \xF3pticos, sendo
+    comum para a sua visualiza\xE7\xE3o o uso de microsc\xF3pios eletr\xF4nicos.
+    Os v\xEDrus s\xE3o capazes de infectar seres vivos de todos os dom\xEDnios, incluindo
+    bact\xE9rias."
+  answerOptions: []
+  skillReward: []

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e916e21f575344e9bb1681687a3290, type: 3}
+  m_Name: NPC2-1
+  m_EditorClassIdentifier: 
+  actorName: Colega 2
+  dialogueText: "Ol\xE1! Por causa das an\xE1lises que recolhemos em Lisboa, soube-se
+    que estamos a suspeitar que possa ser Sars-Cov-3 e temos uma s\xE9rie de pessoas
+    em linha a pedir ajuda! Relembrando, os sintomas desta doen\xE7a s\xE3o febre
+    alta, olho roxo, p\xE9 de atleta e joelho invertido e ocorrem no espa\xE7o de
+    30 dias. Consegues atender algumas chamadas?"
+  answerOptions:
+  - Participar
+  - "N\xE3o participar"
+  skillReward: []
+  toContinue: 0100

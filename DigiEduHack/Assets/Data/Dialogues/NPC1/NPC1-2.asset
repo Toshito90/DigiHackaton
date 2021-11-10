@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e916e21f575344e9bb1681687a3290, type: 3}
+  m_Name: NPC1-2
+  m_EditorClassIdentifier: 
+  actorName: Colega 1
+  dialogueText: Como mencionei, recolhemos 40 amostras de sangue. Em primeiro lugar,
+    temos de dividir as amostras. Que formas podemos usar para dividir?
+  answerOptions:
+  - Sexo
+  - Idade
+  - Etnia
+  - Estrato Social
+  - Tudo
+  skillReward:
+  - conhecimento: 0
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 0
+  - conhecimento: 0
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 1
+  - conhecimento: 0
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 1
+  - conhecimento: 0
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 2
+  - conhecimento: 1
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 3
+  toContinue: 

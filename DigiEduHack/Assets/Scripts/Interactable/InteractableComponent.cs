@@ -15,8 +15,6 @@ public class InteractableComponent : MonoBehaviour
 
     bool canInteract = false;
 
-    GameObject raycastChild;
-
     [SerializeField] Player currentPlayer = null;
 
     public event Action<Transform> onInteract;
@@ -40,7 +38,8 @@ public class InteractableComponent : MonoBehaviour
             float dotProduct = Vector3.Dot(dir, currentPlayer.transform.forward);
             if (dotProduct < faceViewThreshold)
             {
-                if (floatingInteractUI == null && canSpawnFloatingTextInteract)
+                Mover mover = currentPlayer.GetComponent<Mover>();
+                if (floatingInteractUI == null && canSpawnFloatingTextInteract && !mover.IsPaused())
                 {
                     floatingInteractUI = Instantiate(floatingTextUI, transform.position, transform.rotation);
                 }
@@ -104,7 +103,6 @@ public class InteractableComponent : MonoBehaviour
 
             Destroy(floatingInteractUI);
             floatingInteractUI = null;
-            //Destroy(transform.parent.gameObject);
         }
     }
 

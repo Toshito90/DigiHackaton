@@ -17,6 +17,8 @@ public class DialogueUI : MonoBehaviour
 
 	List<Button> buttonOptionsList;
 
+	bool toContinue = true;
+
 	private void Awake()
 	{
 		buttonOptionsList = new List<Button>();
@@ -46,6 +48,8 @@ public class DialogueUI : MonoBehaviour
 	{
 		if (dialogueSystem == null) return;
 
+		toContinue = true;
+
 		Dialogue dialogue = dialogueSystem.GetCurrentDialogue(index);
 		SetActorName(dialogue.GetActorName());
 		SetDialogueText(dialogue.GetDialogueText());
@@ -57,7 +61,9 @@ public class DialogueUI : MonoBehaviour
 		}
 		else
 		{
-			for(int i = 0; i < dialogueAnswers.Length; i++)
+			SetButtonNext(false);
+
+			for (int i = 0; i < dialogueAnswers.Length; i++)
 			{
 				Button go = Instantiate(optionButtonPrefab, optionButtonsParent);
 
@@ -73,6 +79,14 @@ public class DialogueUI : MonoBehaviour
 
 	public void ButtonOptionClickedRef(int closureIndex)
 	{
+		if (dialogueSystem.GetCurrentDialogue().HasContinuationInfo())
+		{
+			if (!dialogueSystem.GetCurrentDialogue().IsGoingToContinue(closureIndex))
+			{
+				toContinue = false;
+			}
+		}
+
 		dialogueSystem.SetOptionAnswer(closureIndex);
 		NextButton();
 	}
@@ -87,6 +101,8 @@ public class DialogueUI : MonoBehaviour
 			}
 			buttonOptionsList.Clear();
 		}
+
+		Player player = FindObjectOfType<Player>();
 
 		if (dialogueSystem.GetCurrentIndex() >= dialogueSystem.GetDialogueList().Length-1)
 		{
@@ -105,7 +121,6 @@ public class DialogueUI : MonoBehaviour
 				interactComp.SetSpawnFloatingText(true);
 			}
 
-			Player player = FindObjectOfType<Player>();
 			if(player != null)
 			{
 				Mover mover = player.GetComponent<Mover>();
@@ -119,11 +134,19 @@ public class DialogueUI : MonoBehaviour
 			return;
 		}
 
+		if (!toContinue)
+		{
+			if (player != null) player.GetComponent<Mover>().SetPause(false);
+			gameObject.SetActive(false);
+			return;
+		}
+
 		SetNextDialogue();
 	}
 
 	private void SetNextDialogue()
 	{
+		toContinue = true;
 		dialogueSystem.SetNextDialogue();
 		int index = dialogueSystem.GetCurrentIndex();
 		SetDialogueProperties(index);

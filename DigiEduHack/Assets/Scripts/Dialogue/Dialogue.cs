@@ -10,6 +10,7 @@ public class Dialogue : ScriptableObject
     [SerializeField] string dialogueText;
     [SerializeField] string[] answerOptions;
     [SerializeField] Player.Stats[] skillReward;
+    [SerializeField] bool[] toContinue;
 
     public string GetActorName()
 	{
@@ -33,7 +34,23 @@ public class Dialogue : ScriptableObject
 
     public Player.Stats GetSkillReward(int optionID)
 	{
+        if (skillReward.Length == 0) return null;
+
         return skillReward[optionID];
     }
 
+    public bool HasSkillReward()
+	{
+        return skillReward.Length > 0;
+    }
+
+    public bool IsGoingToContinue(int optionID)
+	{
+        return toContinue[optionID];
+    }
+
+    public bool HasContinuationInfo()
+	{
+        return toContinue.Length > 0;
+    }
 }
