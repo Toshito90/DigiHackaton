@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Dialogue : ScriptableObject
     [SerializeField] string actorName;
     [SerializeField] string dialogueText;
     [SerializeField] string[] answerOptions;
-    [SerializeField] int[] skillReward;
+    [SerializeField] Player.Stats[] skillReward;
 
     public string GetActorName()
 	{
@@ -30,8 +31,9 @@ public class Dialogue : ScriptableObject
         return answerOptions[index];
     }
 
-    public int GetSkillReward(int optionID)
+    public Player.Stats GetSkillReward(int optionID)
 	{
         return skillReward[optionID];
     }
+
 }

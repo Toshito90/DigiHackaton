@@ -18,4 +18,19 @@ MonoBehaviour:
   - "Ol\xE1..."
   - Boas.
   - Sim, obrigado.
-  skillReward: ffffffff0000000001000000
+  skillReward:
+  - conhecimento: 2
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 0
+  - conhecimento: 0
+    atencaoDetalhe: 0
+    iniciativa: 3
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 0
+  - conhecimento: 0
+    atencaoDetalhe: 0
+    iniciativa: 0
+    comunicacaoVerbal: 0
+    pernsamentoAnalitico: 5

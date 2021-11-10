@@ -12,6 +12,8 @@ public class Mover : MonoBehaviour
 	Rigidbody rb;
 	Vector3 v_Movement;
 
+	bool isPaused = false;
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -22,27 +24,14 @@ public class Mover : MonoBehaviour
 		v_Movement = transform.position;
 	}
 
-	// Update is called once per frame
-	void Update()
-    {
-		if (Input.GetKey(KeyCode.W))
-		{
-			directionForward = 1f;
-			Move();
-		}
-
-		if (Input.GetKey(KeyCode.A))
+	private void Update()
+	{
+		if (Input.GetKey(KeyCode.A) && !isPaused)
 		{
 			transform.Rotate((Vector3.up * -1.0f) * rotateSpeed * Time.deltaTime);
 		}
 
-		if (Input.GetKey(KeyCode.S))
-		{
-			directionForward = -1f;
-			Move();
-		}
-
-		if (Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.D) && !isPaused)
 		{
 			transform.Rotate((Vector3.up * 1.0f) * rotateSpeed * Time.deltaTime);
 		}
@@ -51,10 +40,40 @@ public class Mover : MonoBehaviour
 		{
 			print("Interact");
 		}
+
+		if (Input.GetKey(KeyCode.W))
+		{
+			directionForward = 1f;
+			Move();
+		}
+
+		if (Input.GetKey(KeyCode.S))
+		{
+			directionForward = -1f;
+			Move();
+		}
+	}
+
+	// Update is called once per frame
+	void FixedUpdate()
+    {
+		
+	}
+
+	public void SetPause(bool b)
+	{
+		isPaused = b;
+	}
+
+	public bool IsPaused()
+	{
+		return isPaused;
 	}
 
 	private void Move()
 	{
+		if (isPaused) return;
+
 		v_Movement = (transform.forward * directionForward).normalized;
 		transform.position += v_Movement * CurrentSpeed * Time.deltaTime;
 		rb.MovePosition(transform.position.normalized);

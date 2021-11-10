@@ -96,9 +96,6 @@ public class FollowCamera : MonoBehaviour
         ZoomOnTarget();
         CheckCollisions();
 
-        // rotate
-        LookAtTarget();
-
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             Cursor.visible = false;
@@ -110,13 +107,16 @@ public class FollowCamera : MonoBehaviour
             SetOrbitAxis();
         }
 
-        // move
-        MoveToTarget();
+        // rotate
+        LookAtTarget();
 
         // player input orbit
         OrbitTarget();
 
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+        // move
+        MoveToTarget();
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
 		{
             ResetLookOnTarget();
 		}
@@ -126,12 +126,6 @@ public class FollowCamera : MonoBehaviour
     {
         
     }
-
-    /*private void LateUpdate()
-    {
-        // Snapping Movement
-        //SnapMovement();
-    }*/
 
     private void SnapMovement()
     {

@@ -105,6 +105,16 @@ public class DialogueUI : MonoBehaviour
 				interactComp.SetSpawnFloatingText(true);
 			}
 
+			Player player = FindObjectOfType<Player>();
+			if(player != null)
+			{
+				Mover mover = player.GetComponent<Mover>();
+				if(mover != null)
+				{
+					mover.SetPause(false);
+				}
+			}
+
 			gameObject.SetActive(false);
 			return;
 		}

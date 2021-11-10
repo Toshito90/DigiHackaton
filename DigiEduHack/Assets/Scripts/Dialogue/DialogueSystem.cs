@@ -76,7 +76,7 @@ public class DialogueSystem : MonoBehaviour
 
 		Skill playerSkill = player.GetComponent<Skill>();
 
-		int skillValue = dialogues[currentIndex].GetSkillReward(answerID);
+		Player.Stats skillValue = dialogues[currentIndex].GetSkillReward(answerID);
 
 		playerSkill.AddPlayerSkill(skillValue);
 	}

@@ -6,21 +6,30 @@ public class Skill : MonoBehaviour
 {
 	UIManager uiManager;
 
-	int playerSkill = 0;
+	Player.Stats playerSkill;
 
 	private void Awake()
 	{
+		playerSkill = new Player.Stats();
 		uiManager = FindObjectOfType<UIManager>();
 	}
 
-	public void AddPlayerSkill(int value)
+	public void AddPlayerSkill(Player.Stats stats)
 	{
-		playerSkill += value;
+		playerSkill.atencaoDetalhe += stats.atencaoDetalhe;
+		playerSkill.comunicacaoVerbal += stats.comunicacaoVerbal;
+		playerSkill.conhecimento += stats.conhecimento;
+		playerSkill.iniciativa += stats.iniciativa;
+		playerSkill.pernsamentoAnalitico += stats.pernsamentoAnalitico;
 
-		uiManager.GetSkillValueText().text = playerSkill.ToString();
+		uiManager.GetConhecimentoValueText().text = playerSkill.conhecimento.ToString();
+		uiManager.GetAtencaoDetalheValueText().text = playerSkill.atencaoDetalhe.ToString();
+		uiManager.GetIniciativaValueText().text = playerSkill.iniciativa.ToString();
+		uiManager.GetComunicacaoVerbalValueText().text = playerSkill.comunicacaoVerbal.ToString();
+		uiManager.GetPensamentoAnaliticoValueText().text = playerSkill.pernsamentoAnalitico.ToString();
 	}
 
-	public int GetPlayerSkill()
+	public Player.Stats GetPlayerSkill()
 	{
 		return playerSkill;
 	}
